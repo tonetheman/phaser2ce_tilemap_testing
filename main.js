@@ -10,10 +10,10 @@ boot.prototype = {
         game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 
         // this would make it the same size as no scaling
-       // game.scale.setUserScale(1);
+        game.scale.setUserScale(1,1);
 
         // this would make it a factor larger based on pixel ratio
-        game.scale.setUserScale(1,1);
+        //game.scale.setUserScale(window.devicePixelRatio,window.devicePixelRatio);
 
         // pixel art stuff
         game.renderer.renderSession.roundPixels = true;
