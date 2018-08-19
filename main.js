@@ -7,25 +7,28 @@ let realH = H * window.devicePixelRatio;
 function boot() {}
 boot.prototype = {
     init : function() {
-    },
-    preload : function() {
-
-        //game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 
-        //game.scale.setUserScale(SCALEFACTOR, SCALEFACTOR);
-        game.scale.setUserScale((realW*0.8)/80);
-        
+        // this would make it the same size as no scaling
+       // game.scale.setUserScale(1);
+
+        // this would make it a factor larger based on pixel ratio
+        game.scale.setUserScale(1,1);
+
+        // pixel art stuff
         game.renderer.renderSession.roundPixels = true;
         Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
+    },
+    preload : function() {
 
         // load an extra image to help position things
         game.load.image("dude", "dude.png");
 
+        // phaser key is mapTiles for this image
         game.load.image(
             'mapTiles', 
             'tony_small8x8tilemap.png');
+        // phaser key here is level1
         game.load.tilemap('level1', 
         'tiled_map1.json', 
         null, Phaser.Tilemap.TILED_JSON);
@@ -48,43 +51,23 @@ boot.prototype = {
         this.background = l1.createLayer("background");
         this.levelstuff = l1.createLayer("levelstuff");
 
-        console.log(this.background);
-
-        // now for some math :(
-        // orig tile map is 10 tiles width * 8 pixels = 80 pixels
-        // the W is really unknown at runtime
-        // i want my map to take 80% of the screen
-        // W * 0.8 = how many pixels I want to take up
-        // so 80 is natural and W * 0.8 is desired
-        // 80 * ? = W * 0.8
-        // ? = (W*0.8)/80
-        //this.background.scale.setTo((W*0.8)/80);
-        //this.levelstuff.scale.setTo((W*0.8/80));
-        
-        // one way
-        //this.background.scale.setTo(SCALEFACTOR);
-        //this.levelstuff.scale.setTo(SCALEFACTOR);
-
-        // with realW
-        //this.background.scale.setTo((realW*0.8)/80);
-        //this.levelstuff.scale.setTo((realW*0.8/80));
-
         let s = this.add.sprite(0,0,"dude");
     }
 }
 
 function mainline() {
     console.log("device pixel ratio",window.devicePixelRatio);
-    console.log("scale factor", SCALEFACTOR);
+    console.log("scale factor (device pixel trunc'd)", SCALEFACTOR);
     console.log("WxH",`${W}x${H}`);
     console.log(`real WxH - ${realW}x${realH}`);
-    console.log("Need to take up 80% of W:", 0.8 * realW);
-    console.log("scale factor is",(realW*0.8)/80)
+
+    // create the game
     game = new Phaser.Game(realW, realH, Phaser.CANVAS,
         "c");
+    // add the states
     game.state.add("boot",boot);
     game.state.start("boot");
 }
 
-
+// 
 window.onload = mainline;
