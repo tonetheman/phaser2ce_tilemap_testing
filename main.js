@@ -54,8 +54,10 @@ boot.prototype = {
         // also these match the layer names
         // in the tiled json export
         let background = l1.createLayer("background");
-        
         let levelstuff = l1.createLayer("levelstuff");
+        console.log(background);
+        background.tileOffset.x = 8;
+        levelstuff.tileOffset.x = 8;
 
         // this is the width in pixels no matter what the device pixel ratio
         // it seems
