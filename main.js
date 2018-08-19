@@ -3,7 +3,7 @@ let W = window.innerWidth, H=window.innerHeight;
 let SCALEFACTOR = Math.trunc(window.devicePixelRatio);
 let realW = W * window.devicePixelRatio;
 let realH = H * window.devicePixelRatio;
-let USERSCALE = 16;
+let USERSCALE = 4; // works with pixel 2 chrome emu
 
 function boot() {}
 boot.prototype = {
