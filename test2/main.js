@@ -2,12 +2,12 @@
 let W = window.innerWidth;
 let H = window.innerHeight;
 let game = null;
-let USERSCALE = 8;
+let USERSCALE = 4;
 
 function boot() {}
 boot.prototype = {
     init : function() {
-       // game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+        game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
         //game.scale.setUserScale(USERSCALE);
         // pixel art stuff
         game.renderer.renderSession.roundPixels = true;
@@ -32,10 +32,10 @@ boot.prototype = {
         let imgs = l1.addTilesetImage("dungeon_tiles", 
         "mapTiles");
         let back = l1.createLayer("back");
-        back.scale.setTo(4);
+        //back.scale.setTo(USERSCALE);
 
         let s = game.add.sprite(0,0,"red");
-        s.scale.setTo(4);
+        //s.scale.setTo(USERSCALE);
     }
 }
 
