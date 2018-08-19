@@ -20,6 +20,8 @@ boot.prototype = {
         game.renderer.renderSession.roundPixels = true;
         Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
 
+        // load an extra image to help position things
+        game.load.image("dude", "dude.png");
 
         game.load.image(
             'mapTiles', 
@@ -45,6 +47,7 @@ boot.prototype = {
         // in the tiled json export
         this.background = l1.createLayer("background");
         this.levelstuff = l1.createLayer("levelstuff");
+
         console.log(this.background);
 
         // now for some math :(
@@ -66,9 +69,9 @@ boot.prototype = {
         //this.background.scale.setTo((realW*0.8)/80);
         //this.levelstuff.scale.setTo((realW*0.8/80));
 
-
+        let s = this.add.sprite(0,0,"dude");
     }
-};
+}
 
 function mainline() {
     console.log("device pixel ratio",window.devicePixelRatio);
