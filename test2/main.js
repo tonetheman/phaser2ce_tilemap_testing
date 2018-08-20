@@ -2,7 +2,6 @@
 let W = window.innerWidth;
 let H = window.innerHeight;
 let game = null;
-let USERSCALE = 4;
 
 function boot() {}
 boot.prototype = {
@@ -29,10 +28,21 @@ boot.prototype = {
         let imgs = l1.addTilesetImage("dungeon_tiles", 
         "mapTiles");
         let back = l1.createLayer("back");
+        
+        // this will work to fill move of the screen
+        back.scale.setTo(6,6);
 
+        /*
         for (let i=0;i<(W/16)-2;i++) {
             let s = game.add.sprite(i*16,0,"red");
         }
+        */
+
+       let SF = 6;
+       for (let i=0;i<10;i++) {
+        let a = game.add.sprite(SF*i*16,SF*i*16,"red");
+        a.scale.setTo(6,6); 
+       }
         
     }
 }
