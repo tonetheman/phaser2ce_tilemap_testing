@@ -34,7 +34,10 @@ boot.prototype = {
         let back = l1.createLayer("back");
         //back.scale.setTo(USERSCALE);
 
-        let s = game.add.sprite(0,0,"red");
+        for (let i=0;i<(W/16)-1;i++) {
+            let s = game.add.sprite(i*16,0,"red");
+        }
+        
         //s.scale.setTo(USERSCALE);
     }
 }
@@ -48,6 +51,8 @@ function mainline() {
     let tileWidth = 16;
     let tileCount = W/tileWidth;
     console.log("should have this many",tileCount);
+    console.log("W/H ratio",W/H)
+    console.log("H/W rato",H/W)
 }
 
 window.onload = mainline;
