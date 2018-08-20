@@ -8,7 +8,15 @@ boot.prototype = {
     init : function() {
         game.renderer.renderSession.roundPixels = true;
         Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
-        
+        console.log(game);
+
+        // not sure about this ...
+        // feel like this might not be needed
+        game.scale.setMinMax(980,1740,980,1740);
+
+        //Phaser.ScaleManager.init(this.game, "c", 
+        //1000, 1760, // "real" width
+        //980, 1740); // game safe width
     },
     preload : function() {
         game.load.image("red","red16x16.png");
